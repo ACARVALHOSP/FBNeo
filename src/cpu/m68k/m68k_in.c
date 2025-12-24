@@ -6864,7 +6864,7 @@ M68KMAKE_OP(movec, 32, cr, .)
 			case 0x003:				/* TC */
 				if(CPU_TYPE_IS_040_PLUS(CPU_TYPE))
 				{
-					/* TODO */
+					REG_DA[(word2 >> 12) & 15] = REG_TC;
 					return;
 				}
 				m68ki_exception_illegal();
@@ -6872,7 +6872,7 @@ M68KMAKE_OP(movec, 32, cr, .)
 			case 0x004:				/* ITT0 */
 				if(CPU_TYPE_IS_040_PLUS(CPU_TYPE))
 				{
-					/* TODO */
+					REG_DA[(word2 >> 12) & 15] = REG_ITT0;
 					return;
 				}
 				m68ki_exception_illegal();
@@ -6880,7 +6880,7 @@ M68KMAKE_OP(movec, 32, cr, .)
 			case 0x005:				/* ITT1 */
 				if(CPU_TYPE_IS_040_PLUS(CPU_TYPE))
 				{
-					/* TODO */
+					REG_DA[(word2 >> 12) & 15] = REG_ITT1;
 					return;
 				}
 				m68ki_exception_illegal();
@@ -6888,7 +6888,7 @@ M68KMAKE_OP(movec, 32, cr, .)
 			case 0x006:				/* DTT0 */
 				if(CPU_TYPE_IS_040_PLUS(CPU_TYPE))
 				{
-					/* TODO */
+					REG_DA[(word2 >> 12) & 15] = REG_DTT0;
 					return;
 				}
 				m68ki_exception_illegal();
@@ -6896,7 +6896,7 @@ M68KMAKE_OP(movec, 32, cr, .)
 			case 0x007:				/* DTT1 */
 				if(CPU_TYPE_IS_040_PLUS(CPU_TYPE))
 				{
-					/* TODO */
+					REG_DA[(word2 >> 12) & 15] = REG_DTT1;
 					return;
 				}
 				m68ki_exception_illegal();
@@ -6904,7 +6904,7 @@ M68KMAKE_OP(movec, 32, cr, .)
 			case 0x805:				/* MMUSR */
 				if(CPU_TYPE_IS_040_PLUS(CPU_TYPE))
 				{
-					/* TODO */
+					REG_DA[(word2 >> 12) & 15] = REG_MMUSR;
 					return;
 				}
 				m68ki_exception_illegal();
@@ -6912,7 +6912,7 @@ M68KMAKE_OP(movec, 32, cr, .)
 			case 0x806:				/* URP */
 				if(CPU_TYPE_IS_040_PLUS(CPU_TYPE))
 				{
-					/* TODO */
+					REG_DA[(word2 >> 12) & 15] = REG_URP;
 					return;
 				}
 				m68ki_exception_illegal();
@@ -6920,7 +6920,7 @@ M68KMAKE_OP(movec, 32, cr, .)
 			case 0x807:				/* SRP */
 				if(CPU_TYPE_IS_040_PLUS(CPU_TYPE))
 				{
-					/* TODO */
+					REG_DA[(word2 >> 12) & 15] = REG_SRP;
 					return;
 				}
 				m68ki_exception_illegal();
@@ -7014,7 +7014,7 @@ M68KMAKE_OP(movec, 32, rc, .)
 			case 0x003:			/* TC */
 				if (CPU_TYPE_IS_040_PLUS(CPU_TYPE))
 				{
-					/* TODO */
+					REG_TC = REG_DA[(word2 >> 12) & 15];
 					return;
 				}
 				m68ki_exception_illegal();
@@ -7022,7 +7022,7 @@ M68KMAKE_OP(movec, 32, rc, .)
 			case 0x004:			/* ITT0 */
 				if (CPU_TYPE_IS_040_PLUS(CPU_TYPE))
 				{
-					/* TODO */
+					REG_ITT0 = REG_DA[(word2 >> 12) & 15];
 					return;
 				}
 				m68ki_exception_illegal();
@@ -7030,7 +7030,7 @@ M68KMAKE_OP(movec, 32, rc, .)
 			case 0x005:			/* ITT1 */
 				if (CPU_TYPE_IS_040_PLUS(CPU_TYPE))
 				{
-					/* TODO */
+					REG_ITT1 = REG_DA[(word2 >> 12) & 15];
 					return;
 				}
 				m68ki_exception_illegal();
@@ -7038,7 +7038,7 @@ M68KMAKE_OP(movec, 32, rc, .)
 			case 0x006:			/* DTT0 */
 				if (CPU_TYPE_IS_040_PLUS(CPU_TYPE))
 				{
-					/* TODO */
+					REG_DTT0 = REG_DA[(word2 >> 12) & 15];
 					return;
 				}
 				m68ki_exception_illegal();
@@ -7046,7 +7046,7 @@ M68KMAKE_OP(movec, 32, rc, .)
 			case 0x007:			/* DTT1 */
 				if (CPU_TYPE_IS_040_PLUS(CPU_TYPE))
 				{
-					/* TODO */
+					REG_DTT1 = REG_DA[(word2 >> 12) & 15];
 					return;
 				}
 				m68ki_exception_illegal();
@@ -7054,7 +7054,7 @@ M68KMAKE_OP(movec, 32, rc, .)
 			case 0x805:			/* MMUSR */
 				if (CPU_TYPE_IS_040_PLUS(CPU_TYPE))
 				{
-					/* TODO */
+					REG_MMUSR = REG_DA[(word2 >> 12) & 15];
 					return;
 				}
 				m68ki_exception_illegal();
@@ -7062,7 +7062,7 @@ M68KMAKE_OP(movec, 32, rc, .)
 			case 0x806:			/* URP */
 				if (CPU_TYPE_IS_040_PLUS(CPU_TYPE))
 				{
-					/* TODO */
+					REG_URP = REG_DA[(word2 >> 12) & 15];
 					return;
 				}
 				m68ki_exception_illegal();
@@ -7070,7 +7070,7 @@ M68KMAKE_OP(movec, 32, rc, .)
 			case 0x807:			/* SRP */
 				if (CPU_TYPE_IS_040_PLUS(CPU_TYPE))
 				{
-					/* TODO */
+					REG_SRP = REG_DA[(word2 >> 12) & 15];
 					return;
 				}
 				m68ki_exception_illegal();

@@ -573,6 +573,14 @@ unsigned int m68k_get_reg(void* context, m68k_register_t regnum)
 		case M68K_REG_VBR:	return cpu->vbr;
 		case M68K_REG_CACR:	return cpu->cacr;
 		case M68K_REG_CAAR:	return cpu->caar;
+		case M68K_REG_TC:	return cpu->tc;
+		case M68K_REG_ITT0:	return cpu->itt0;
+		case M68K_REG_ITT1:	return cpu->itt1;
+		case M68K_REG_DTT0:	return cpu->dtt0;
+		case M68K_REG_DTT1:	return cpu->dtt1;
+		case M68K_REG_MMUSR:	return cpu->mmusr;
+		case M68K_REG_URP:	return cpu->urp;
+		case M68K_REG_SRP:	return cpu->srp;
 		case M68K_REG_PREF_ADDR:	return cpu->pref_addr;
 		case M68K_REG_PREF_DATA:	return cpu->pref_data;
 		case M68K_REG_PPC:	return MASK_OUT_ABOVE_32(cpu->ppc);
@@ -635,6 +643,14 @@ void m68k_set_reg(m68k_register_t regnum, unsigned int value)
 		case M68K_REG_DFC:	REG_DFC = value & 7; return;
 		case M68K_REG_CACR:	REG_CACR = MASK_OUT_ABOVE_32(value); return;
 		case M68K_REG_CAAR:	REG_CAAR = MASK_OUT_ABOVE_32(value); return;
+		case M68K_REG_TC:	REG_TC = MASK_OUT_ABOVE_32(value); return;
+		case M68K_REG_ITT0:	REG_ITT0 = MASK_OUT_ABOVE_32(value); return;
+		case M68K_REG_ITT1:	REG_ITT1 = MASK_OUT_ABOVE_32(value); return;
+		case M68K_REG_DTT0:	REG_DTT0 = MASK_OUT_ABOVE_32(value); return;
+		case M68K_REG_DTT1:	REG_DTT1 = MASK_OUT_ABOVE_32(value); return;
+		case M68K_REG_MMUSR:	REG_MMUSR = MASK_OUT_ABOVE_32(value); return;
+		case M68K_REG_URP:	REG_URP = MASK_OUT_ABOVE_32(value); return;
+		case M68K_REG_SRP:	REG_SRP = MASK_OUT_ABOVE_32(value); return;
 		case M68K_REG_PPC:	REG_PPC = MASK_OUT_ABOVE_32(value); return;
 		case M68K_REG_IR:	REG_IR = MASK_OUT_ABOVE_16(value); return;
 		case M68K_REG_PREF_ADDR:	CPU_PREF_ADDR = MASK_OUT_ABOVE_32(value); return;
@@ -1053,6 +1069,15 @@ void m68k_pulse_reset(void)
 	m68ki_cpu.virq_state = 0;
 	/* Reset VBR */
 	REG_VBR = 0;
+	/* Clear control and translation state */
+	REG_TC = 0;
+	REG_ITT0 = 0;
+	REG_ITT1 = 0;
+	REG_DTT0 = 0;
+	REG_DTT1 = 0;
+	REG_MMUSR = 0;
+	REG_URP = 0;
+	REG_SRP = 0;
 	/* Go to supervisor mode */
 	m68ki_set_sm_flag(SFLAG_SET | MFLAG_CLEAR);
 

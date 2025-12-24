@@ -314,6 +314,14 @@
 #define REG_DFC          m68ki_cpu.dfc
 #define REG_CACR         m68ki_cpu.cacr
 #define REG_CAAR         m68ki_cpu.caar
+#define REG_TC           m68ki_cpu.tc
+#define REG_ITT0         m68ki_cpu.itt0
+#define REG_ITT1         m68ki_cpu.itt1
+#define REG_DTT0         m68ki_cpu.dtt0
+#define REG_DTT1         m68ki_cpu.dtt1
+#define REG_MMUSR        m68ki_cpu.mmusr
+#define REG_URP          m68ki_cpu.urp
+#define REG_SRP          m68ki_cpu.srp
 #define REG_IR           m68ki_cpu.ir
 
 #define REG_FP           m68ki_cpu.fpr
@@ -859,8 +867,16 @@ struct _m68ki_cpu_core
 	uint dfc;          /* Destination Function Code Register (m68010+) */
 	uint cacr;         /* Cache Control Register (m68020, unemulated) */
 	uint caar;         /* Cache Address Register (m68020, unemulated) */
+	uint tc;           /* MMU Translation Control (m68040, unemulated) */
+	uint itt0;         /* Instruction Transparent Translation 0 (m68040, unemulated) */
+	uint itt1;         /* Instruction Transparent Translation 1 (m68040, unemulated) */
+	uint dtt0;         /* Data Transparent Translation 0 (m68040, unemulated) */
+	uint dtt1;         /* Data Transparent Translation 1 (m68040, unemulated) */
+	uint mmusr;        /* MMU Status Register (m68040, unemulated) */
+	uint urp;          /* User Root Pointer (m68040, unemulated) */
+	uint srp;          /* Supervisor Root Pointer (m68040, unemulated) */
 	uint ir;           /* Instruction Register */
-    fp_reg fpr[8];     /* FPU Data Register (m68040) */
+	fp_reg fpr[8];     /* FPU Data Register (m68040) */
 	uint fpiar;        /* FPU Instruction Address Register (m68040) */
 	uint fpsr;         /* FPU Status Register (m68040) */
 	uint fpcr;         /* FPU Control Register (m68040) */
