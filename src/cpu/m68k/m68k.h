@@ -108,6 +108,15 @@ enum _m68k_register_t
 	M68K_REG_CACR,		/* Cache Control Register */
 	M68K_REG_CAAR,		/* Cache Address Register */
 
+	M68K_REG_TC,		/* MMU Translation Control */
+	M68K_REG_ITT0,		/* Instruction Transparent Translation 0 */
+	M68K_REG_ITT1,		/* Instruction Transparent Translation 1 */
+	M68K_REG_DTT0,		/* Data Transparent Translation 0 */
+	M68K_REG_DTT1,		/* Data Transparent Translation 1 */
+	M68K_REG_MMUSR,		/* MMU Status Register */
+	M68K_REG_URP,		/* User Root Pointer */
+	M68K_REG_SRP,		/* Supervisor Root Pointer */
+
 	/* Assumed registers */
 	/* These are cheat registers which emulate the 1-longword prefetch
      * present in the 68000 and 68010.
