@@ -50,7 +50,28 @@ static inline UINT32 alpha_blend(UINT32 d, UINT32 s, UINT32 p)
 void NeoSpriteCalcLimit()
 {
 	if (nNeoEnforceSpriteLimit[nNeoActiveSlot] == 0) {
-		nMaxSpriteBank = MAX_SPRITEBANK; // no limit!
+		UINT16 *SizeAttribute = (UINT16*)(NeoGraphicsRAM + 0x010400);
+		INT32 nLastActiveBank = 0;
+		INT32 nTrackedBankSize = 0;
+
+		for (INT32 nBank = 0; nBank < MAX_SPRITEBANK; nBank++) {
+			UINT16 nAttribute = SizeAttribute[nBank];
+
+			if (nAttribute & 0x40) {
+				if (nTrackedBankSize) {
+					nLastActiveBank = nBank + 1;
+				}
+				continue;
+			}
+
+			nTrackedBankSize = nAttribute & 0x3f;
+
+			if (nTrackedBankSize) {
+				nLastActiveBank = nBank + 1;
+			}
+		}
+
+		nMaxSpriteBank = nLastActiveBank;
 		return;
 	}
 
