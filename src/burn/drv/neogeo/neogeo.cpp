@@ -72,6 +72,7 @@ INT32 NeoLoadSprites(INT32 nOffset, INT32 nNum, UINT8* pDest, UINT32 nSpriteSize
 	struct BurnRomInfo ri;
 
 	UINT32 nRomSize = 0;
+	INT32 nRet = 1;
 
 	if (BurnDrvGetHardwareCode() & (HARDWARE_SNK_CMC42 | HARDWARE_SNK_CMC50)) {
 
@@ -98,7 +99,7 @@ INT32 NeoLoadSprites(INT32 nOffset, INT32 nNum, UINT8* pDest, UINT32 nSpriteSize
 
 		pBuf1 = (UINT8*)BurnMalloc(nBuf1Len);
 		if (pBuf1 == NULL) {
-			return 1;
+			goto cleanup;
 		}
 
 		if ((BurnDrvGetHardwareCode() & HARDWARE_PUBLIC_MASK) == HARDWARE_SNK_DEDICATED_PCB) {
@@ -106,7 +107,7 @@ INT32 NeoLoadSprites(INT32 nOffset, INT32 nNum, UINT8* pDest, UINT32 nSpriteSize
 
 			pBuf2 = (UINT8*)BurnMalloc(nRomSize * 2);
 			if (pBuf2 == NULL) {
-				return 1;
+				goto cleanup;
 			}
 		}
 
@@ -181,8 +182,12 @@ INT32 NeoLoadSprites(INT32 nOffset, INT32 nNum, UINT8* pDest, UINT32 nSpriteSize
 			}
 		}
 
+		nRet = 0;
+
+		cleanup:
 		BurnFree(pBuf2);
 		BurnFree(pBuf1);
+		return nRet;
 	} else {
 		nSpriteSize = 0;
 
